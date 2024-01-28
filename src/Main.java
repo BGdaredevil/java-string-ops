@@ -13,8 +13,28 @@ public class Main {
 //        strRepeater(sc);
 //        substrings(sc);
 //        textFilter(sc);
-        separateDigits(sc);
+//        separateDigits(sc);
+        validUsernames(sc);
 
+    }
+
+    private static void validUsernames(Scanner sc) {
+        String[] input = sc.nextLine().split(", ");
+        StringBuilder result = new StringBuilder();
+
+        for (String username : input) {
+            if (username.length() < 3 || username.length() > 16) {
+                continue;
+            }
+
+            if (!username.matches("^[\\w-]+$")) {
+                continue;
+            }
+
+            result.append(username).append('\n');
+        }
+
+        System.out.println(result);
     }
 
     private static void separateDigits(Scanner sc) {
