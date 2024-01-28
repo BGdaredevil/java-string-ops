@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -14,9 +16,26 @@ public class Main {
 //        substrings(sc);
 //        textFilter(sc);
 //        separateDigits(sc);
-        validUsernames(sc);
+//        validUsernames(sc);
+        extractFileName(sc);
 
     }
+
+    private static void extractFileName(Scanner sc) {
+        String input = sc.nextLine();
+        Pattern pattern = Pattern.compile("(?<=\\\\)(?<fileName>[\\w.]+)(?>\\.)(?<ext>[a-zA-Z]+$)");
+        Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String fileName = matcher.group("fileName");
+            String ext = matcher.group("ext");
+
+            System.out.println("File name: " + fileName);
+            System.out.println("File extension: " + ext);
+        }
+
+    }
+
 
     private static void validUsernames(Scanner sc) {
         String[] input = sc.nextLine().split(", ");
