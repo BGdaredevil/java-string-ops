@@ -22,8 +22,26 @@ public class Main {
 //        replaceRepeatingChars(sc);
 //        extractInfo(sc);
 //        sumAsci(sc);
-        translateMorse(sc);
+//        translateMorse(sc);
+        htmlParser(sc);
 
+    }
+
+    private static void htmlParser(Scanner sc) {
+        String heading = sc.nextLine();
+        String content = sc.nextLine();
+        String comments = sc.nextLine();
+        StringBuilder result = new StringBuilder();
+
+        result.append("<h1>\n").append("  ").append(heading).append('\n').append("</h1>\n");
+        result.append("<article>\n").append("  ").append(content).append('\n').append("</article>\n");
+
+        while (!comments.equals("end of comments")) {
+            result.append("<div>\n").append("  ").append(content).append('\n').append("</div>\n");
+            comments = sc.nextLine();
+        }
+
+        System.out.println(result);
     }
 
     private static void translateMorse(Scanner sc) {
