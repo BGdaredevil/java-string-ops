@@ -17,8 +17,24 @@ public class Main {
 //        textFilter(sc);
 //        separateDigits(sc);
 //        validUsernames(sc);
-        extractFileName(sc);
+//        extractFileName(sc);
+//        cypherCaesar(sc);
+            multiplyBigInt(sc);
 
+    }
+
+    private static void multiplyBigInt(Scanner sc) {
+
+    }
+
+    private static void cypherCaesar(Scanner sc) {
+        String input = sc.nextLine();
+        StringBuilder result = new StringBuilder(input.length());
+
+        for (char item : input.toCharArray()) {
+            result.append((char) ((int) item + 3));
+        }
+        System.out.println(result);
     }
 
     private static void extractFileName(Scanner sc) {
@@ -35,7 +51,6 @@ public class Main {
         }
 
     }
-
 
     private static void validUsernames(Scanner sc) {
         String[] input = sc.nextLine().split(", ");
