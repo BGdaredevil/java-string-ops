@@ -21,8 +21,26 @@ public class Main {
 //        validUsernames(sc);
 //        extractFileName(sc);
 //        cypherCaesar(sc);
-        multiplyBigInt(sc);
+//        multiplyBigInt(sc);
+        replaceRepeatingChars(sc);
 
+    }
+
+    private static void replaceRepeatingChars(Scanner sc) {
+        String input = sc.nextLine();
+        StringBuilder result = new StringBuilder();
+        for (char letter : input.toCharArray()) {
+            if (result.isEmpty()) {
+                result.append(letter);
+                continue;
+            }
+
+            char prev = result.charAt(result.length() - 1);
+            if (prev != letter) {
+                result.append(letter);
+            }
+        }
+        System.out.println(result);
     }
 
     private static void multiplyBigInt(Scanner sc) {
