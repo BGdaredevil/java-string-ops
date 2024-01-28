@@ -22,8 +22,31 @@ public class Main {
 //        extractFileName(sc);
 //        cypherCaesar(sc);
 //        multiplyBigInt(sc);
-        replaceRepeatingChars(sc);
+//        replaceRepeatingChars(sc);
+        extractInfo(sc);
 
+    }
+
+    private static void extractInfo(Scanner sc) {
+        Pattern namePattern = Pattern.compile("(?>@)(?<name>[A-Za-z]+)(?>\\|)");
+        Pattern age = Pattern.compile("(?>#)(?<age>[\\d]+)(?>\\*)");
+        int count = Integer.parseInt(sc.nextLine());
+        StringBuilder result = new StringBuilder();
+
+        while (count > 0) {
+            count--;
+            String input = sc.nextLine();
+            Matcher nameMatcher = namePattern.matcher(input);
+            Matcher ageMatcher = age.matcher(input);
+
+            if (nameMatcher.find()) {
+                if (ageMatcher.find()) {
+                    result.append(String.format("%s is %s years old.\n", nameMatcher.group("name"), ageMatcher.group("age")));
+                }
+            }
+        }
+
+        System.out.println(result);
     }
 
     private static void replaceRepeatingChars(Scanner sc) {
