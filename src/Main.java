@@ -8,7 +8,20 @@ public class Main {
         System.out.println("input");
 
 //        reverseStrings(sc);
-        strRepeater(sc);
+//        strRepeater(sc);
+        substrings(sc);
+
+    }
+
+    private static void substrings(Scanner sc) {
+        String target = sc.nextLine();
+        String result = sc.nextLine();
+
+        while (result.contains(target)) {
+            result = result.replaceAll(target, "");
+        }
+
+        System.out.println(result);
 
     }
 
