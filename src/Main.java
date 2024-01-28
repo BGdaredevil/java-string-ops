@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,12 +21,37 @@ public class Main {
 //        validUsernames(sc);
 //        extractFileName(sc);
 //        cypherCaesar(sc);
-            multiplyBigInt(sc);
+        multiplyBigInt(sc);
 
     }
 
     private static void multiplyBigInt(Scanner sc) {
+        int[] digits = Arrays.stream(sc.nextLine().split("")).mapToInt(Integer::parseInt).toArray();
+        int multiplier = Integer.parseInt(sc.nextLine());
 
+        if (multiplier == 0) {
+            System.out.println(0);
+            return;
+        }
+
+        StringBuilder result = new StringBuilder(digits.length);
+
+        int carryOver = 0;
+
+        for (int i = digits.length - 1; i >= 0; i--) {
+            int lastDigit = digits[i];
+            int product = lastDigit * multiplier + carryOver;
+
+            int productLastDigit = product % 10;
+            carryOver = (product - productLastDigit) / 10;
+            result.append(productLastDigit);
+        }
+
+        if (carryOver > 0) {
+            result.append(carryOver);
+        }
+
+        System.out.println(result.reverse());
     }
 
     private static void cypherCaesar(Scanner sc) {
