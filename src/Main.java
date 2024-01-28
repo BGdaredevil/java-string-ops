@@ -23,8 +23,24 @@ public class Main {
 //        cypherCaesar(sc);
 //        multiplyBigInt(sc);
 //        replaceRepeatingChars(sc);
-        extractInfo(sc);
+//        extractInfo(sc);
+        sumAsci(sc);
 
+    }
+
+    private static void sumAsci(Scanner sc) {
+        char first = sc.nextLine().charAt(0);
+        char second = sc.nextLine().charAt(0);
+        char[] input = sc.nextLine().toCharArray();
+        int result = 0;
+
+        for (char item : input) {
+            if (item > first && item < second) {
+                result += item;
+            }
+        }
+
+        System.out.println(result);
     }
 
     private static void extractInfo(Scanner sc) {
