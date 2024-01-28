@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -24,8 +21,28 @@ public class Main {
 //        multiplyBigInt(sc);
 //        replaceRepeatingChars(sc);
 //        extractInfo(sc);
-        sumAsci(sc);
+//        sumAsci(sc);
+        translateMorse(sc);
 
+    }
+
+    private static void translateMorse(Scanner sc) {
+        String[] encodedWords = sc.nextLine().split(" \\| ");
+        StringBuilder result = new StringBuilder();
+        Map<String, Character> table = new HashMap<>(Map.ofEntries(Map.entry("....", 'H'),
+                Map.entry("-...", 'B'), Map.entry(".-..", 'L'), Map.entry("--..", 'Z'), Map.entry("..-.", 'F'), Map.entry("...-", 'V'), Map.entry("-.-.", 'C'), Map.entry(".---", 'J'), Map.entry(".--.", 'P'), Map.entry("--.-", 'Q'), Map.entry("-..-", 'X'), Map.entry("-.--", 'Y'), Map.entry("...", 'S'), Map.entry("-..", 'D'), Map.entry("--.", 'G'), Map.entry("..-", 'U'), Map.entry("-.-", 'K'), Map.entry(".-.", 'R'), Map.entry(".--", 'W'), Map.entry("---", 'O'), Map.entry("..", 'I'), Map.entry("-.", 'N'), Map.entry("--", 'M'), Map.entry(".-", 'A'), Map.entry(".", 'E'), Map.entry("-", 'T'))
+        );
+
+        for (String word : encodedWords) {
+            String[] encodedChars = word.split(" ");
+
+            for (String encodedChar : encodedChars) {
+                result.append(table.get(encodedChar));
+            }
+
+            result.append(' ');
+        }
+        System.out.println(result);
     }
 
     private static void sumAsci(Scanner sc) {
