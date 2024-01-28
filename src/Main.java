@@ -7,7 +7,20 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("input");
 
-        reverseStrings(sc);
+//        reverseStrings(sc);
+        strRepeater(sc);
+
+    }
+
+    private static void strRepeater(Scanner sc) {
+        String[] input = sc.nextLine().split(" ");
+        StringBuilder result = new StringBuilder();
+        result.append('\n');
+        for (String item : input) {
+            result.append(item.repeat(item.length()));
+        }
+
+        System.out.println(result);
     }
 
     private static void reverseStrings(Scanner sc) {
