@@ -9,8 +9,27 @@ public class Main {
 
 //        reverseStrings(sc);
 //        strRepeater(sc);
-        substrings(sc);
+//        substrings(sc);
+        textFilter(sc);
 
+    }
+
+    private static void textFilter(Scanner sc) {
+        String[] bannedWords = sc.nextLine().split(", ");
+        StringBuilder multilineInput = new StringBuilder();
+
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            multilineInput.append(line).append(" ");
+        }
+
+        String result = multilineInput.toString().trim();
+
+        for (String bannedWord : bannedWords) {
+            result = result.replaceAll(bannedWord, "*".repeat(bannedWord.length()));
+        }
+
+        System.out.println(result);
     }
 
     private static void substrings(Scanner sc) {
