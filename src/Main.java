@@ -35,8 +35,55 @@ public class Main {
 //        matchPhones(sc);
 //        pascalCaseSplit(sc);
 //        dateMatcher(sc);
+        crackStarEnigma(sc);
 
+    }
 
+    private static void crackStarEnigma(Scanner sc) {
+        int count = Integer.parseInt(sc.nextLine());
+        Pattern letters = Pattern.compile("[star]", Pattern.CASE_INSENSITIVE);
+        Pattern commandData = Pattern.compile("(?<planet>(?<=@)[A-Z][a-z]+).*(?<population>(?<=:)\\d+).*!(?<attackType>A|D)!.*(?<soldierCount>(?<=->)\\d+)");
+        String command = sc.nextLine();
+        ArrayList<String> attacked = new ArrayList<>();
+        ArrayList<String> destroyed = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
+
+        while (count > 0) {
+            Matcher matchedLetters = letters.matcher(command);
+            int modifier = (int) matchedLetters.results().count();
+
+            StringBuilder decrypted = new StringBuilder();
+            for (char item : command.toCharArray()) {
+                decrypted.append((char) ((int) item - modifier));
+            }
+
+            String message = decrypted.toString();
+            Matcher commandParser = commandData.matcher(message);
+
+            if (commandParser.find()) {
+                String planet = commandParser.group("planet");
+                String attackType = commandParser.group("attackType");
+                String population = commandParser.group("population");
+                String soldierCount = commandParser.group("soldierCount");
+
+                switch (attackType) {
+                    case "A" ->
+                            attacked.add(String.format("  -> %s: Killed: %s civilians and %s military personal", planet, population, soldierCount));
+                    case "D" ->
+                            destroyed.add(String.format("  -> %s: Killed: %s civilians and %s military personal", planet, population, soldierCount));
+                }
+            }
+
+            command = sc.nextLine();
+            count--;
+        }
+
+        result.add(String.format("Attacked planets: %d", attacked.size()));
+        result.addAll(attacked);
+        result.add(String.format("Destroyed planets: %d", destroyed.size()));
+        result.addAll(destroyed);
+
+        System.out.println(String.join("\n", result));
     }
 
     private static void dateMatcher(Scanner sc) {
