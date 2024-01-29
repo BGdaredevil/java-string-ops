@@ -33,8 +33,27 @@ public class Main {
 //        }, new String[]{"pie", "bring", "glad", "During", "amazing", "pharmacist", "sprained"});
 //        matchFullName(sc);
 //        matchPhones(sc);
-        pascalCaseSplit(sc);
+//        pascalCaseSplit(sc);
+//        dateMatcher(sc);
 
+
+    }
+
+    private static void dateMatcher(Scanner sc) {
+        Pattern date = Pattern.compile("(?<day>[0123]\\d)([.\\-/])(?<month>[A-Z][a-z]{2})\\2(?<year>\\d{4})");
+        String dates = sc.nextLine();
+        Matcher matcher = date.matcher(dates);
+        ArrayList<String> result = new ArrayList<>();
+
+        while (matcher.find()) {
+            String day = matcher.group("day");
+            String month = matcher.group("month");
+            String year = matcher.group("year");
+
+            result.add(String.format("Day: %s, Month: %s, Year: %s", day, month, year));
+        }
+
+        System.out.println(String.join("\n", result));
     }
 
     private static void pascalCaseSplit(Scanner sc) {
