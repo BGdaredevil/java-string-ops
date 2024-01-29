@@ -32,7 +32,16 @@ public class Main {
 //                        "I hope this year Santa will _____ me a robot."
 //        }, new String[]{"pie", "bring", "glad", "During", "amazing", "pharmacist", "sprained"});
 //        matchFullName(sc);
-        matchPhones(sc);
+//        matchPhones(sc);
+        pascalCaseSplit(sc);
+
+    }
+
+    private static void pascalCaseSplit(Scanner sc) {
+        String input = sc.nextLine();
+        String pattern = "(?<=[a-z])(?=[A-Z])";
+
+        System.out.println(String.join(", ", input.split(pattern)));
     }
 
     private static void matchPhones(Scanner sc) {
