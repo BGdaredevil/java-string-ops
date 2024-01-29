@@ -24,14 +24,34 @@ public class Main {
 //        sumAsci(sc);
 //        translateMorse(sc);
 //        htmlParser(sc);
-        fillMissingWords(new String[]{
-                "Hi, grandma! I'm so ____ to write to you. ______ the winter vacation, so many _______ things happened. " +
-                        "My dad bought me a sled. Mom started a new job as a __________. " +
-                        "My brother's ankle is ________, and now it bothers me even more. " +
-                        "Every night Mom cooks ___ on your recipe because it is the most delicious. " +
-                        "I hope this year Santa will _____ me a robot."
-        }, new String[]{"pie", "bring", "glad", "During", "amazing", "pharmacist", "sprained"});
+//        fillMissingWords(new String[]{
+//                "Hi, grandma! I'm so ____ to write to you. ______ the winter vacation, so many _______ things happened. " +
+//                        "My dad bought me a sled. Mom started a new job as a __________. " +
+//                        "My brother's ankle is ________, and now it bothers me even more. " +
+//                        "Every night Mom cooks ___ on your recipe because it is the most delicious. " +
+//                        "I hope this year Santa will _____ me a robot."
+//        }, new String[]{"pie", "bring", "glad", "During", "amazing", "pharmacist", "sprained"});
+        matchFullName(sc);
 
+    }
+
+    private static void matchFullName(Scanner sc) {
+        Pattern namesPattern = Pattern.compile("(?<firstName>\\b[A-Z][a-z]+\\b) (?<lastName>\\b[A-Z][a-z]+\\b)");
+        String[] names = sc.nextLine().split(", ");
+        ArrayList<String> result = new ArrayList<>();
+
+        for (String name : names) {
+            Matcher matcher = namesPattern.matcher(name);
+
+            if (matcher.find()) {
+                String firstName = matcher.group("firstName");
+                String lastName = matcher.group("lastName");
+
+                result.add(String.format("%s %s", firstName, lastName));
+            }
+        }
+
+        System.out.println(String.join("\n", result));
     }
 
     private static void fillMissingWords(String[] letterInput, String[] words) {
