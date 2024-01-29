@@ -23,8 +23,25 @@ public class Main {
 //        extractInfo(sc);
 //        sumAsci(sc);
 //        translateMorse(sc);
-        htmlParser(sc);
+//        htmlParser(sc);
+        fillMissingWords(new String[]{
+                "Hi, grandma! I'm so ____ to write to you. ______ the winter vacation, so many _______ things happened. " +
+                        "My dad bought me a sled. Mom started a new job as a __________. " +
+                        "My brother's ankle is ________, and now it bothers me even more. " +
+                        "Every night Mom cooks ___ on your recipe because it is the most delicious. " +
+                        "I hope this year Santa will _____ me a robot."
+        }, new String[]{"pie", "bring", "glad", "During", "amazing", "pharmacist", "sprained"});
 
+    }
+
+    private static void fillMissingWords(String[] letterInput, String[] words) {
+        String letter = letterInput[0];
+
+        for (String word : Arrays.stream(words).sorted((a, b) -> b.length() - a.length()).toArray(String[]::new)) {
+            letter = letter.replaceAll("_".repeat(word.length()), word);
+        }
+
+        System.out.println(letter);
     }
 
     private static void htmlParser(Scanner sc) {
