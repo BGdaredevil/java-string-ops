@@ -31,8 +31,21 @@ public class Main {
 //                        "Every night Mom cooks ___ on your recipe because it is the most delicious. " +
 //                        "I hope this year Santa will _____ me a robot."
 //        }, new String[]{"pie", "bring", "glad", "During", "amazing", "pharmacist", "sprained"});
-        matchFullName(sc);
+//        matchFullName(sc);
+        matchPhones(sc);
+    }
 
+    private static void matchPhones(Scanner sc) {
+        Pattern phone = Pattern.compile("\\+359( |-)2\\1\\d{3}\\1\\d{4}\\b");
+        String phones = sc.nextLine();
+        ArrayList<String> result = new ArrayList<>();
+        Matcher matchedPhones = phone.matcher(phones);
+
+        while (matchedPhones.find()) {
+            result.add(matchedPhones.group());
+        }
+
+        System.out.println(String.join(", ", result));
     }
 
     private static void matchFullName(Scanner sc) {
